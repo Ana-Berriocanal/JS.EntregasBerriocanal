@@ -1,0 +1,30 @@
+
+header{
+    background-color:rgb(182, 178, 178);
+    position: sticky;
+    top: 0;
+    div{
+        display: inline;
+        text-align: center;
+    h1{
+        font-family: 'Playfair Display', serif;
+        color: black;
+        }
+    h2{
+        font-family: 'Rokkitt', serif;
+        color: black;
+        }
+    }
+    nav{
+        div{
+            ul{
+                li{
+                    a{
+                        text-decoration: none;
+                        color:rgb(0, 94, 0);
+                    }
+                }
+            }
+        }
+    }
+}

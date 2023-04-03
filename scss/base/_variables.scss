@@ -1,0 +1,28 @@
+$colores: 
+antiquewhite,
+rgb(90, 90, 90),
+grey,
+#000000,
+#989591;
+
+@mixin solaP ($alto, $display, $flex, $justify, $align){
+    height: $alto;
+    display: $display;
+    flex-direction: $flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin img_cien ($alto, $ancho){
+    height: $alto;
+    width: $ancho;
+}
+@mixin fotos ($ancho, $alto, $margin, $align, $display, $trans_p, $trans_d, $trans_t){
+    width: $ancho;
+    height: $alto;
+    margin: $margin;
+    text-align: $align;
+    display: $display;
+    transition-property: $trans_p;
+    transition-duration: $trans_d;
+    transition-timing-function: $trans_t;
+}
