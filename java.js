@@ -1,17 +1,15 @@
-let precio_inicial = 0;
+/*let precio_inicial = 0;
 let cuotas;
 let precio_final = 0;
 let p_cuota = 0;
 
 alert("CALCULADORA DE CUOTAS");
 do{
-    precio_inicial = prompt("Ingrese el precio del producto que desea calcular");
+    precio_inicial = prompt("Elija el precio del producto que desea calcular \n 1- Amigurumis $2000 \n 2- Atrapasueños $1890 \n 3- Mantas tejidas $7000");
 }while(precio_inicial<=0);
 console.log("El precio inicial es: " + precio_inicial);
-
-alert(" 3 cuotas: 10% interes , 6 cuotas: 25% interes , 12 cuotas: 65% interes");
 do{
-    cuotas = prompt("Ingrese la cantidad de cuotas que desea.");
+    cuotas = prompt("Ingrese la cantidad de cuotas que desea: \n 3 cuotas: 10% interes , 6 cuotas: 25% interes , 12 cuotas: 65% interés.");
 }while(cuotas<=0);
 console.log("Cantidad de cuotas: " + cuotas);
 
@@ -36,4 +34,37 @@ function total(n){
     }
 }
 
-total(cuotas);
+total(cuotas); */
+
+class cargaproductos{
+constructor(nombre,precioNeto){
+    this.nombre= nombre;
+    this.precioNeto=precioNeto;
+    this.preciofinal= parseInt (precioNeto) + parseInt (precioNeto) * 0.21;
+}
+}
+let articulos = [];
+let respuesta = "SI";
+do{
+    let nombre= prompt ("Ingrese el nombre del producto a cargar");
+    let precioNeto= prompt ("Ingrese el precio neto del producto a cargar");
+const amigurumi = new cargaproductos (nombre,precioNeto);
+articulos.push(amigurumi);
+respuesta = prompt ("Querés ingresar otro producto? SI/NO");
+} while (respuesta.toUpperCase() !=="NO");
+respuesta = prompt ("Se cargaron " + articulos.length + " productos. Desea verlos? SI/NO");
+if (respuesta.toUpperCase() == "SI"){
+        alert("Podes verlo desde la consola!");
+    for(const amigurumi of articulos){
+        console.log(amigurumi);
+    }
+}
+let nombre_prenda_buscada = prompt ("Para corroborar la existencia y el precio final de los artículos, búsquelos aquí:");
+console.log(nombre_prenda_buscada);
+let buscaprendas = articulos.find((aa) => aa.nombre === nombre_prenda_buscada);
+console.log(buscaprendas);
+if (buscaprendas){
+    console.log("Datos del artículo:" + buscaprendas.toString);
+} else {
+    console.log("No hay artículos ingresados con esas características. Volvé a intentar!");
+}
