@@ -1,0 +1,19 @@
+# ARTESANIAS ADA
+
+Curso de JavaScript
+Preentrega 3 - Proyecto Final
+
+## Berriocanal Ana
+
+## Documentation
+
+El presente proyecto contiene una página web que ofrece servicios de venta de productos hechos a mano. En primera instancia, se busca el ingreso/carga de nuevos productos por nombre y su valor "Neto". Como segunda instancia, vamos a poder corroborar tanto los productos ingresados en el sistema manualmente (por nombre), como su valor FINAL (sumado impuesto IVA), y su almacenamiento en el Storage.
+Nuestra página nos brinda una producción extensa de diversos artículos, mayoritariamente hechos con materiales nobles como lanas orgánicas, sin procesos de teñido ni colorantes, con los que se busca confeccionar productos orientados a bebés; mordillos, juguetes de apego, amigurumis, mantas. También tenemos diversos artículos de decoración para el hogar, y una variada lista de artículos de diversos rubros.
+A su vez se brinda la posibilidad de que el o la cliente elija materiales, colores y medidas para la confección del producto que desea, buscando crear una experiencia lo más personalizada posible.
+
+## Feedback
+
+Este proyecto es 100% para uso práctico, su estructura puede ser modificada y los valores asignados a los productos son ilustrativos. Se busca la corrección de diferentes conceptos trabajados en clase.
+
+## Used By
+Tutor/es Curso JavaScript - Comisión 39505.

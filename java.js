@@ -68,3 +68,72 @@ if (buscaprendas){
 } else {
     console.log("No hay artículos ingresados con esas características. Volvé a intentar!");
 }
+
+/*Contenido DOM:
+let atrapasueños = document.getElementsByClassName("atrapasueños");
+console.log("Sección de compras personales", atrapasueños);
+
+let hogar = document.getElementsByClassName("seccionHogar");
+console.log("Decoración innovadora y a mano", seccionHogar);
+
+let bebe = document.getElementsByClassName("seccionBebe");
+console.log("Para cuidar a los bebés", seccionBebe);
+
+let juguetes = document.getElementsByClassName("amigurumis");
+console.log("Juguetes con lanas nobles", amigurumis);
+*/
+
+/*Eventos:
+const formularioInput = document.getElementById("formu");
+formularioInput.addEventListener("change", () => {
+    console.log("Usted ha escrito para hacer un pedido:", formularioInput.value);
+})
+
+const enviar = document.getElementById("enviar")[0];
+enviar.addEventListener("mouseup", () => {
+    console.log("Seguro que desea enviar el formulario?");
+})
+
+const borrar = document.getElementById("borrar")[0];
+enviar.addEventListener("mouseup", ()=> {
+    console.log("Seguro que desea borrar el formulario?");
+})  */
+
+//EVENTOS:
+
+const ada = document.getElementsByTagName("h1")[0];
+ada.addEventListener("mouseover",() => {
+    console.log("Nos encontramos posicionadas sobre el título de nuestra página");
+})
+
+const enviar = document.getElementById("enviar");
+enviar.addEventListener("click",() => {
+    console.log("El usuario está realizando un envío de formulario.")})
+
+    const borrar = document.getElementById("borrar");
+borrar.addEventListener("click",() => {
+    console.log("El usuario CANCELARÁ el envío de este formulario.")})
+
+// STORAGE Y JSON:
+
+const jsoncargaproductos = JSON.stringify(articulos);
+localStorage.setItem("productos", jsoncargaproductos);
+
+const json_a_obj = JSON.parse(localStorage.getItem("articulos"));
+console.log("Historial prendas ingresadas", {jsoncargaproductos});
+
+const prendas_buscadas = JSON.stringify(buscaprendas);
+localStorage.setItem("Prendas Buscadas", buscaprendas);
+
+const prendas_recuperadas = localStorage.getItem("buscaprendas");
+console.log("Historial de prendas buscadas", {prendas_recuperadas});
+
+//DOM:
+
+function cupones () {
+    let descuento = document.getElementById("cupon");
+    descuento.innerText="Ingresá Artesanias CdHs2023 para un 20% OFF en tu compra!"
+}
+
+let clickear = document.getElementById("funcion");
+cupon.addEventListener("click", cupones);
