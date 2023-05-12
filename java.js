@@ -1,42 +1,4 @@
-/*let precio_inicial = 0;
-let cuotas;
-let precio_final = 0;
-let p_cuota = 0;
-
-alert("CALCULADORA DE CUOTAS");
-do{
-    precio_inicial = prompt("Elija el precio del producto que desea calcular \n 1- Amigurumis $2000 \n 2- Atrapasueños $1890 \n 3- Mantas tejidas $7000");
-}while(precio_inicial<=0);
-console.log("El precio inicial es: " + precio_inicial);
-do{
-    cuotas = prompt("Ingrese la cantidad de cuotas que desea: \n 3 cuotas: 10% interes , 6 cuotas: 25% interes , 12 cuotas: 65% interés.");
-}while(cuotas<=0);
-console.log("Cantidad de cuotas: " + cuotas);
-
-function total(n){
-    if(n == 1){
-        precio_final = precio_inicial;
-    }
-    if(n == 3){
-        p_cuota = (parseInt(precio_inicial)+((parseInt(precio_inicial)*0.1)))/n;
-        precio_final = p_cuota*n;
-        alert("El precio final es "+ precio_final + " a razón de 3 cuotas de "+ p_cuota);
-    }else if (n == 6){
-        p_cuota = (parseInt(precio_inicial)+((parseInt(precio_inicial)*0.25)))/n;
-        precio_final = p_cuota*n;
-        alert("El precio final es "+ precio_final + " a razón de 6 cuotas de "+ p_cuota);
-    }else if (n == 12){
-        p_cuota = (parseInt(precio_inicial)+((parseInt(precio_inicial)*0.65)))/n;
-        precio_final = p_cuota*n;
-        alert("El precio final es "+ precio_final + " a razón de 12 cuotas de "+ p_cuota);
-    }else{
-        alert("No realizamos " +n+ " cuotas.");
-    }
-}
-
-total(cuotas); */
-
-class cargaproductos{
+/*class cargaproductos{
 constructor(nombre,precioNeto){
     this.nombre= nombre;
     this.precioNeto=precioNeto;
@@ -68,38 +30,65 @@ if (buscaprendas){
 } else {
     console.log("No hay artículos ingresados con esas características. Volvé a intentar!");
 }
+ */
 
-/*Contenido DOM:
-let atrapasueños = document.getElementsByClassName("atrapasueños");
-console.log("Sección de compras personales", atrapasueños);
+class articulos{
+    constructor(nombrearticulo,precio){
+        this.nombrearticulo= nombrearticulo;
+        this.precio=precio;
+    }}
 
-let hogar = document.getElementsByClassName("seccionHogar");
-console.log("Decoración innovadora y a mano", seccionHogar);
+const jsoncargaproductos = JSON.stringify(articulos);
+localStorage.setItem("productos", jsoncargaproductos);
 
-let bebe = document.getElementsByClassName("seccionBebe");
-console.log("Para cuidar a los bebés", seccionBebe);
+ // Creo el formulario 
 
-let juguetes = document.getElementsByClassName("amigurumis");
-console.log("Juguetes con lanas nobles", amigurumis);
-*/
+const carerasJSON = JSON.parse(localStorage.getItem("articulo"));
+console.log("Historial prendas ingresadas", {jsoncargaproductos});
+let articulo = [];
 
-/*Eventos:
-const formularioInput = document.getElementById("formu");
-formularioInput.addEventListener("change", () => {
-    console.log("Usted ha escrito para hacer un pedido:", formularioInput.value);
-})
 
-const enviar = document.getElementById("enviar")[0];
-enviar.addEventListener("mouseup", () => {
-    console.log("Seguro que desea enviar el formulario?");
-})
+if (localStorage.getItem("articulo")) {
+    articulosJSON = JSON.parse (localStorage.getItem("articulo"));
+    articulos= articulosJSON.map(
+        (i) => new articulos (i.nombrearticulo, i.precio));
+}
+const formucarrito = document.getElementById("formulario");
 
-const borrar = document.getElementById("borrar")[0];
-enviar.addEventListener("mouseup", ()=> {
-    console.log("Seguro que desea borrar el formulario?");
-})  */
+function sumararticulo(e) {
+    e.preventDeafult();
+    const nombre = document.getElementById("nombre").value;
+    const precioNeto = document.getElementById("precio").value;
+let nuevoart = new articulos(nombre, precio);
+alert("se añadió tu artículo a la lista!");
+articulos.push(nuevoart);
+localStorage.setItem("articulo", JSON.stringify(articulos));
+
+clean ()
+nuevosarticulos();
+}
+
+function clean (){
+    document.getElementById("nombrearticulo").value = "";
+    document.getElementById("precio").value = "";
+}
+
+function nuevosarticulos () {
+    let tablas = document.getElementById("tablecarrito");
+    tablas.innerHTML="";
+    articulos.forEach((i) => {
+        let guardar = document.createElement("tr");
+        guardar.innerHTML = `<tr>
+        <td scope ="row">${i.nombre}</td>
+        <td>${i.precio.length}</td>
+    </tr>`;
+    tablas.append(guardar);
+    });
+}
 
 //EVENTOS:
+
+formucarrito.addEventListener("submit", sumararticulo);
 
 const ada = document.getElementsByTagName("h1")[0];
 ada.addEventListener("mouseover",() => {
@@ -114,7 +103,7 @@ enviar.addEventListener("click",() => {
 borrar.addEventListener("click",() => {
     console.log("El usuario CANCELARÁ el envío de este formulario.")})
 
-// STORAGE Y JSON:
+/* STORAGE Y JSON:
 
 const jsoncargaproductos = JSON.stringify(articulos);
 localStorage.setItem("productos", jsoncargaproductos);
@@ -127,6 +116,7 @@ localStorage.setItem("Prendas Buscadas", buscaprendas);
 
 const prendas_recuperadas = localStorage.getItem("buscaprendas");
 console.log("Historial de prendas buscadas", {prendas_recuperadas});
+*/
 
 //DOM:
 
