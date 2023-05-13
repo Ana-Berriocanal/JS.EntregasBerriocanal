@@ -32,14 +32,14 @@ if (buscaprendas){
 }
  */
 
-class articulos{
-    constructor(nombrearticulo,precio){
-        this.nombrearticulo= nombrearticulo;
-        this.precio=precio;
+class Articulo{
+    constructor(nombreproducto,precio){
+        this.nombreproducto = nombreproducto;
+        this.precio = precio;
     }}
-
-const jsoncargaproductos = JSON.stringify(articulos);
-localStorage.setItem("productos", jsoncargaproductos);
+const arrayArticulos = JSON.parse (localStorage.getItem("articulo")) || [];
+const jsoncargaproductos = JSON.stringify(arrayArticulos);
+localStorage.setItem("articulo", jsoncargaproductos);
 
  // Creo el formulario 
 
@@ -48,39 +48,39 @@ console.log("Historial prendas ingresadas", {jsoncargaproductos});
 let articulo = [];
 
 
-if (localStorage.getItem("articulo")) {
+/*if (localStorage.getItem("articulo")) {
     articulosJSON = JSON.parse (localStorage.getItem("articulo"));
-    articulos= articulosJSON.map(
-        (i) => new articulos (i.nombrearticulo, i.precio));
-}
+    arrayArticulos= articulosJSON.map(
+        (i) => new Articulo (i.nombrearticulo, i.precio));
+}*/
 const formucarrito = document.getElementById("formulario");
 
 function sumararticulo(e) {
-    e.preventDeafult();
-    const nombre = document.getElementById("nombre").value;
+    e.preventDefault();
+    const nombre = document.getElementById("nombreproducto").value;
     const precioNeto = document.getElementById("precio").value;
-let nuevoart = new articulos(nombre, precio);
+let nuevoart = new Articulo(nombre, precioNeto);
 alert("se añadió tu artículo a la lista!");
-articulos.push(nuevoart);
-localStorage.setItem("articulo", JSON.stringify(articulos));
+arrayArticulos.push(nuevoart);
+localStorage.setItem("articulo", JSON.stringify(arrayArticulos));
 
 clean ()
 nuevosarticulos();
 }
 
 function clean (){
-    document.getElementById("nombrearticulo").value = "";
+    document.getElementById("nombreproducto").value = "";
     document.getElementById("precio").value = "";
 }
 
 function nuevosarticulos () {
     let tablas = document.getElementById("tablecarrito");
     tablas.innerHTML="";
-    articulos.forEach((i) => {
+    arrayArticulos.forEach((i) => {
         let guardar = document.createElement("tr");
         guardar.innerHTML = `<tr>
-        <td scope ="row">${i.nombre}</td>
-        <td>${i.precio.length}</td>
+        <td scope ="row">${i.nombreproducto}</td>
+        <td>${i.precio}</td>
     </tr>`;
     tablas.append(guardar);
     });
@@ -103,20 +103,6 @@ enviar.addEventListener("click",() => {
 borrar.addEventListener("click",() => {
     console.log("El usuario CANCELARÁ el envío de este formulario.")})
 
-/* STORAGE Y JSON:
-
-const jsoncargaproductos = JSON.stringify(articulos);
-localStorage.setItem("productos", jsoncargaproductos);
-
-const json_a_obj = JSON.parse(localStorage.getItem("articulos"));
-console.log("Historial prendas ingresadas", {jsoncargaproductos});
-
-const prendas_buscadas = JSON.stringify(buscaprendas);
-localStorage.setItem("Prendas Buscadas", buscaprendas);
-
-const prendas_recuperadas = localStorage.getItem("buscaprendas");
-console.log("Historial de prendas buscadas", {prendas_recuperadas});
-*/
 
 //DOM:
 
@@ -124,6 +110,5 @@ function cupones () {
     let descuento = document.getElementById("cupon");
     descuento.innerText="Ingresá Artesanias CdHs2023 para un 20% OFF en tu compra!"
 }
-
 let clickear = document.getElementById("funcion");
-cupon.addEventListener("click", cupones);
+clickear.addEventListener("click", cupones);

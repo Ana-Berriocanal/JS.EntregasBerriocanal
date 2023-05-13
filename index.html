@@ -111,13 +111,13 @@
                     <h4>Enviamos tu compra</h4>
                     <p>a través de Correo Argentino o motomensajería.</p>
                 </div>
-                <div class="subti">
-                    <h4>Hacelo a tu medida</h4>
-                    <p>vos nos indicás las medidas y colores a utilizar.</p>
-                </div>
                 <div id="funcion" class="subti">
                     <h4>CUPÓN DE DESCUENTO</h4>
                     <p id="cupon">Hacé click aquí para la mejor sorpresa.</p>
+                </div>
+                <div class="subti">
+                    <h4>Hacelo a tu medida</h4>
+                    <p>vos nos indicás las medidas y colores a utilizar.</p>
                 </div>
             </div>
         </section>
@@ -146,13 +146,13 @@
             <h3>¿Qué productos te gustaría incluir?</h3>
             <form id="formulario">
                 <div class="mb-3">
-                <label for="exampleInputPassword1" id="nombrearticulo" class="form-label">Ingrese el nombre del producto</label>
-                <input type="nombreproducto" class="form-control" id="exampleInputPassword1">
+                <label for="exampleInputPassword1" class="form-label">Ingrese el nombre del producto</label>
+                <input id="nombreproducto" type="nombreproductos" class="form-control" id="exampleInputPassword1">
                 </div>
 
-                <div id="precio" class="input-group mb-3">
+                <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input id="precio" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-text">.00</span>
                 </div>
                 
@@ -164,7 +164,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">Número</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Precio Final</th>
