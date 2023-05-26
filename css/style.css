@@ -57,6 +57,12 @@ header div{
 .subti:hover{
     width: 360px;
 }
+
+.administrador{
+    text-align: center;  
+    align-items: center;
+    color:rgb(99, 98, 98);
+}
 .d-block-w-100{
     width: 100%;
     height: 300px;

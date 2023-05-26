@@ -30,7 +30,12 @@ if (buscaprendas){
 } else {
     console.log("No hay artículos ingresados con esas características. Volvé a intentar!");
 }
- */
+if (localStorage.getItem("articulo")) {
+    articulosJSON = JSON.parse (localStorage.getItem("articulo"));
+    arrayArticulos= articulosJSON.map(
+        (i) => new Articulo (i.nombrearticulo, i.precio));
+}*/
+ 
 
 class Articulo{
     constructor(nombreproducto,precio){
@@ -47,31 +52,78 @@ const carerasJSON = JSON.parse(localStorage.getItem("articulo"));
 console.log("Historial prendas ingresadas", {jsoncargaproductos});
 let articulo = [];
 
-
-/*if (localStorage.getItem("articulo")) {
-    articulosJSON = JSON.parse (localStorage.getItem("articulo"));
-    arrayArticulos= articulosJSON.map(
-        (i) => new Articulo (i.nombrearticulo, i.precio));
-}*/
 const formucarrito = document.getElementById("formulario");
+
+//PROMISES
 
 function sumararticulo(e) {
     e.preventDefault();
-    const nombre = document.getElementById("nombreproducto").value;
-    const precioNeto = document.getElementById("precio").value;
-let nuevoart = new Articulo(nombre, precioNeto);
-alert("se añadió tu artículo a la lista!");
-arrayArticulos.push(nuevoart);
-localStorage.setItem("articulo", JSON.stringify(arrayArticulos));
+    let nombre = document.getElementById("nombreproducto").value;
+    let precioNeto = document.getElementById("precio").value;
+    console.log(nombre, precioNeto);
+    let H;
+    //VALIDACIONES
+    if(nombre == "" || precioNeto == ""){
+        H=1;
+    }else{
+        H=0;
+    }
+    const ValidacionProductos = (res) =>{
+        return new Promise((resolve, reject) => {
+            if (res == 0  ){
+            resolve("se ha anadido con exito");
+            }else {
+            reject("no se pudo anadir");    
+            }
+        })}
+    ValidacionProductos(H).then((data) =>{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Se guardo correctamente!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+    console.log(data);
+    }).catch ((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Faltan completar algunos campos!',
+          })
+          console.log(error);
+    })
 
-clean ()
-nuevosarticulos();
+    /* if (nombre == "" || precioNeto == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Faltan completar algunos campos!',
+        })
+        return;
+    } else {
+        let nuevoart = new Articulo(nombre, precioNeto);
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se guardó correctamente!',
+        showConfirmButton: false,
+        timer: 1500
+    }) */
+
+    arrayArticulos.unshift(nuevoart);
+    localStorage.setItem("articulo", JSON.stringify(arrayArticulos));
+    clean ()
+    nuevosarticulos();
 }
 
 function clean (){
     document.getElementById("nombreproducto").value = "";
     document.getElementById("precio").value = "";
 }
+
+
+
 
 function nuevosarticulos () {
     let tablas = document.getElementById("tablecarrito");
@@ -112,3 +164,4 @@ function cupones () {
 }
 let clickear = document.getElementById("funcion");
 clickear.addEventListener("click", cupones);
+

@@ -12,6 +12,7 @@
     <!-- link  rel="stylesheet" href="./css/style.css"> -->
     <link  rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" href="./img/logo_ocre-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </head>
 
@@ -48,6 +49,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="#">Contactanos</a></li>
+                                <li><a class="dropdown-item" href="./pages/administrador.html">Administrador</a></li>
                             </ul>
                         </li>
 
@@ -141,41 +143,6 @@
             <div>
                 <p>Trabajamos juntos para diseñar, crear y producir elementos de los que estamos orgullosas. Estamos disponibles para contrataciones en un amplio rango de disciplinas creativas y para múltiples trabajos, proyectos y eventos.</p>
             </div>
-        </section>
-        <section>
-            <h3>¿Qué productos te gustaría incluir?</h3>
-            <form id="formulario">
-                <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Ingrese el nombre del producto</label>
-                <input id="nombreproducto" type="nombreproductos" class="form-control" id="exampleInputPassword1">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">$</span>
-                    <input id="precio" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">.00</span>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Enviar</button>
-                <button type="reset" class="btn btn-primary">Borrar</button>
-                </form>
-                <div>
-                <h3>Chequeá tu lista de productos seleccionados!</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Precio Final</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablecarrito">
-                    </tbody>
-                    </table>
-
-
-
-                </div>
         </section>
         <section class="infoG">
             <div class="preguntas">
