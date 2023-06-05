@@ -1,67 +1,36 @@
-/*class cargaproductos{
-constructor(nombre,precioNeto){
-    this.nombre= nombre;
-    this.precioNeto=precioNeto;
-    this.preciofinal= parseInt (precioNeto) + parseInt (precioNeto) * 0.21;
-}
-}
-let articulos = [];
-let respuesta = "SI";
-do{
-    let nombre= prompt ("Ingrese el nombre del producto a cargar");
-    let precioNeto= prompt ("Ingrese el precio neto del producto a cargar");
-const amigurumi = new cargaproductos (nombre,precioNeto);
-articulos.push(amigurumi);
-respuesta = prompt ("Querés ingresar otro producto? SI/NO");
-} while (respuesta.toUpperCase() !=="NO");
-respuesta = prompt ("Se cargaron " + articulos.length + " productos. Desea verlos? SI/NO");
-if (respuesta.toUpperCase() == "SI"){
-        alert("Podes verlo desde la consola!");
-    for(const amigurumi of articulos){
-        console.log(amigurumi);
-    }
-}
-let nombre_prenda_buscada = prompt ("Para corroborar la existencia y el precio final de los artículos, búsquelos aquí:");
-console.log(nombre_prenda_buscada);
-let buscaprendas = articulos.find((aa) => aa.nombre === nombre_prenda_buscada);
-console.log(buscaprendas);
-if (buscaprendas){
-    console.log("Datos del artículo:" + buscaprendas.toString);
-} else {
-    console.log("No hay artículos ingresados con esas características. Volvé a intentar!");
-}
-if (localStorage.getItem("articulo")) {
-    articulosJSON = JSON.parse (localStorage.getItem("articulo"));
-    arrayArticulos= articulosJSON.map(
-        (i) => new Articulo (i.nombrearticulo, i.precio));
-}*/
- 
-
 class Articulo{
     constructor(nombreproducto,precio){
         this.nombreproducto = nombreproducto;
         this.precio = precio;
     }}
-const arrayArticulos = JSON.parse (localStorage.getItem("articulo")) || [];
-const jsoncargaproductos = JSON.stringify(arrayArticulos);
+let arrayArticulos = [];
+let localAnterior = localStorage.getItem("articulo");  
+if(localAnterior == null){
+    arrayArticulos = [];
+}else{
+    arrayArticulos = JSON.parse(localStorage.getItem("articulo"));
+    nuevosarticulos(arrayArticulos);
+}
+
+let jsoncargaproductos = JSON.stringify(arrayArticulos);
 localStorage.setItem("articulo", jsoncargaproductos);
 
  // Creo el formulario 
-
-const carerasJSON = JSON.parse(localStorage.getItem("articulo"));
-console.log("Historial prendas ingresadas", {jsoncargaproductos});
+let articulosJSON = JSON.parse(localStorage.getItem("articulo"));
 let articulo = [];
-
-const formucarrito = document.getElementById("formulario");
-
-//PROMISES
+if (localStorage.getItem("articulo")) {
+    articulo = articulosJSON.map(
+        (i) => new Articulo (i.nombreproducto, i.precio));
+}
+const cargarTabla = document.getElementById("formulario");
 
 function sumararticulo(e) {
     e.preventDefault();
     let nombre = document.getElementById("nombreproducto").value;
     let precioNeto = document.getElementById("precio").value;
-    console.log(nombre, precioNeto);
     let H;
+
+
     //VALIDACIONES
     if(nombre == "" || precioNeto == ""){
         H=1;
@@ -72,10 +41,14 @@ function sumararticulo(e) {
         return new Promise((resolve, reject) => {
             if (res == 0  ){
             resolve("se ha anadido con exito");
-            }else {
+            let nuevoart = new Articulo (nombre, precioNeto);
+            articulo.push(nuevoart);
+            localStorage.setItem("articulo", JSON.stringify(articulo));
+        }else {
             reject("no se pudo anadir");    
-            }
+        }
         })}
+
     ValidacionProductos(H).then((data) =>{
         Swal.fire({
             position: 'top-end',
@@ -83,52 +56,22 @@ function sumararticulo(e) {
             title: 'Se guardo correctamente!',
             showConfirmButton: false,
             timer: 1500
-          })
-    console.log(data);
+        })
     }).catch ((error) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Faltan completar algunos campos!',
-          })
-          console.log(error);
-    })
-
-    /* if (nombre == "" || precioNeto == "") {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Faltan completar algunos campos!',
         })
-        return;
-    } else {
-        let nuevoart = new Articulo(nombre, precioNeto);
-        Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Se guardó correctamente!',
-        showConfirmButton: false,
-        timer: 1500
-    }) */
-
-    arrayArticulos.unshift(nuevoart);
-    localStorage.setItem("articulo", JSON.stringify(arrayArticulos));
-    clean ()
-    nuevosarticulos();
+    })
+    clean();
+    nuevosarticulos(articulo);
 }
 
-function clean (){
-    document.getElementById("nombreproducto").value = "";
-    document.getElementById("precio").value = "";
-}
-
-
-
-
-function nuevosarticulos () {
+function nuevosarticulos (art) {
     let tablas = document.getElementById("tablecarrito");
     tablas.innerHTML="";
-    arrayArticulos.forEach((i) => {
+    art.forEach((i) => {
         let guardar = document.createElement("tr");
         guardar.innerHTML = `<tr>
         <td scope ="row">${i.nombreproducto}</td>
@@ -137,31 +80,20 @@ function nuevosarticulos () {
     tablas.append(guardar);
     });
 }
+function clean (){
+    document.getElementById("nombreproducto").value = "";
+    document.getElementById("precio").value = "";
+}
 
 //EVENTOS:
-
-formucarrito.addEventListener("submit", sumararticulo);
-
-const ada = document.getElementsByTagName("h1")[0];
-ada.addEventListener("mouseover",() => {
-    console.log("Nos encontramos posicionadas sobre el título de nuestra página");
-})
-
-const enviar = document.getElementById("enviar");
-enviar.addEventListener("click",() => {
-    console.log("El usuario está realizando un envío de formulario.")})
-
-    const borrar = document.getElementById("borrar");
-borrar.addEventListener("click",() => {
-    console.log("El usuario CANCELARÁ el envío de este formulario.")})
+cargarTabla.addEventListener("submit", sumararticulo);
 
 
-//DOM:
+function cargapagina (isLoading = false) {
+    const loadingContainer = document.getElementById("cargando");
+    if (isLoading) {
+    loadingContainer.classList.remove("visually-hidden");
+    setTimeout(() =>{
+        loadingContainer.classList.add("visually-hidden");},1400);}}
 
-function cupones () {
-    let descuento = document.getElementById("cupon");
-    descuento.innerText="Ingresá Artesanias CdHs2023 para un 20% OFF en tu compra!"
-}
-let clickear = document.getElementById("funcion");
-clickear.addEventListener("click", cupones);
-
+    document.getElementById("borrartodo").addEventListener("click", cargapagina);

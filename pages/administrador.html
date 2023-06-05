@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <meta name="keywords" content="artesanias, decoracion, amigurumi, crochet, arte, tejer, handmade">
@@ -43,13 +43,13 @@
     <main>
         <section>
             <div class="administrador">
-  <h1>Sección ADMINISTRADORES</h1>
+    <h1>Sección ADMINISTRADORES</h1>
             <h4>Carga y verificación de productos:</h4>
         </div>
             <form id="formulario">
                 <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Ingrese el nombre del producto</label>
-                <input id="nombreproducto" type="nombreproductos" class="form-control" id="exampleInputPassword1">
+                <input id="nombreproducto" type="nombreproducto" class="form-control" id="exampleInputPassword1">
                 </div>
 
                 <div class="input-group mb-3">
@@ -58,17 +58,27 @@
                     <span class="input-group-text">.00</span>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Enviar</button>
-                <button type="reset" class="btn btn-primary">Borrar</button>
+                <button id="boton_enviar" type="submit" class="btn btn-primary">Enviar</button>
+                <button id="borrartodo" type="reset" class="btn btn-primary">Borrar</button>
                 </form>
                 <div>
-                <h3>Chequeá tu lista de productos seleccionados!</h3>
+                <h3>Chequeá tu lista de productos añadidos!</h3>
+                <div
+                id="cargando"
+                class="d-flex align-items-center alert alert-info mt-3 visually-hidden">
+                <strong>Borrando datos ingresados..</strong>
+                <div
+                    class="spinner-border ms-auto"
+                    role="status"
+                    aria-hidden="true">
+                </div>
+            </div>
+
                 <table class="table">
                     <thead>
                         <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Precio Final</th>
                         </tr>
                     </thead>
                     <tbody id="tablecarrito">
