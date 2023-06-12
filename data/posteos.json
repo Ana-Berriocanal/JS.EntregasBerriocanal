@@ -1,0 +1,9 @@
+[
+    {"nombre": "Astronauta 20x24cm", "precio": 5000, "id": 1},
+    {"nombre": "Baby Yoda 12z15cm", "precio": 4500, "id": 2},
+    {"nombre": "Papá Noel 20x18cm", "precio": 3500, "id": 3},
+    {"nombre": "Perro 10x15cm", "precio": 4500, "id": 4},
+    {"nombre": "Manta de lana 1mx1m", "precio": 6000, "id": 5},
+    {"nombre": "Sujeta chupete 15cm", "precio": 2000, "id": 6},
+    {"nombre": "Par de muñecas 20x18cm", "precio": 4500, "id": 7}
+]

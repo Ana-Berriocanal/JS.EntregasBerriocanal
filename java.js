@@ -1,3 +1,10 @@
+//Carga de productos sin stock en la sección Administradores:
+
+
+const lista = document.querySelector('#listado')
+
+
+
 class Articulo{
     constructor(nombreproducto,precio){
         this.nombreproducto = nombreproducto;
@@ -30,7 +37,7 @@ function sumararticulo(e) {
     let precioNeto = document.getElementById("precio").value;
     let H;
 
-
+    console.log(fetch('https://jsonplaceholder.typicode.com/guide/')); 
     //VALIDACIONES
     if(nombre == "" || precioNeto == ""){
         H=1;
@@ -97,3 +104,5 @@ function cargapagina (isLoading = false) {
         loadingContainer.classList.add("visually-hidden");},1400);}}
 
     document.getElementById("borrartodo").addEventListener("click", cargapagina);
+
+
